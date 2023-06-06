@@ -13,7 +13,9 @@ for (const iterator of addTitle) {
 let selectImg = document.querySelectorAll("img");
 
 for (const image of selectImg) {
-  image.style.display = "none";
+  if (!image.classList.contains("important")) {
+    image.style.display = "none";
+  }
 }
 
 /*  Loop through all the paragraphs and display their content in the 
@@ -26,8 +28,17 @@ for (const paragraph of allParagraphs) {
 }
 /* Give each of the paragraph a random text color (different for each one) UNLESS it has a class
  then leave it as it is.  */
-let allParagraphsNoClass = document.querySelectorAll("p:not([class])");
 
-for (const paragraph of allParagraphsNoClass) {
-  paragraph.style.color = "red";
-}
+let allParagraphsNoClass = document.querySelectorAll("p:not([class])");
+console.log({ allParagraphsNoClass });
+
+allParagraphsNoClass.forEach((paragraph) => {
+  paragraph.style.color =
+    "#" + Math.floor(Math.random() * 16777215).toString(16);
+});
+
+/* let colors = ["green", "red", "blue"];
+
+allParagraphsNoClass[0].style.color = "green";
+allParagraphsNoClass[1].style.color = "red";
+allParagraphsNoClass[2].style.color = "blue"; */
