@@ -8,10 +8,18 @@ const addSection = (child) => {
   article.appendChild(child);
 };
 
+/* 
+clean is not necessary somehow when we append again the same 
+array in a diferren order it takes out the old node and replace it 
+for new ones.
+ we cannot append
+ multiple times because in the DOM, being a tree 
+ of nodes, one node can have only one parent, it
+  cannot have multiple parents. 
 const cleanArticle = () => {
   const article = document.querySelector("article");
   article.replaceChildren();
-};
+}; */
 
 const createSection = (students) => {
   students.forEach((student) => {
@@ -80,6 +88,7 @@ const changeFontColor = (allSections) => {
 /* Find a way so that everytime you load the page the order of the elements changes! */
 
 const shuffleArray = (allSections) => {
+  /* as allSections is a nodeElement we need to convert it to array */
   let array = Array.from(allSections);
   for (let i = array.length - 1; i > 0; i--) {
     let j = Math.floor(Math.random() * (i + 1));
@@ -87,7 +96,8 @@ const shuffleArray = (allSections) => {
     array[i] = array[j];
     array[j] = temp;
   }
-  cleanArticle();
+  /* We need to cleen the children of the element before add the  */
+  /*   cleanArticle(); */
   addNewItem(array);
 };
 
