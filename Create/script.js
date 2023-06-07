@@ -8,12 +8,19 @@ const addSection = (child) => {
   article.appendChild(child);
 };
 
-const createSection = (name) => {
-  const newSection = document.createElement("section");
-  const newParagraph = newSection.appendChild(document.createElement("p"));
-  const newContent = document.createTextNode(name);
-  newParagraph.appendChild(newContent);
-  addSection(newSection);
+const cleanArticle = () => {
+  const article = document.querySelector("article");
+  article.replaceChildren();
+};
+
+const createSection = (students) => {
+  students.forEach((student) => {
+    const newSection = document.createElement("section");
+    const newParagraph = newSection.appendChild(document.createElement("p"));
+    const newContent = document.createTextNode(student);
+    newParagraph.appendChild(newContent);
+    addSection(newSection);
+  });
 };
 
 const giveBackgroundColor = (allSections) => {
@@ -72,28 +79,31 @@ const changeFontColor = (allSections) => {
 
 /* Find a way so that everytime you load the page the order of the elements changes! */
 
-const changeElementsOrder = (allSections) => {
-  console.log(Array.from(allSections).map((e) => e.textContent));
-  let array = ["maria", "jose", "joao"];
-  /*   let reverseArray = array.reverse();
-  console.log(reverseArray.map((e) => e.textContent));
-  reverseArray.forEach((item) => addSection(item)); */
+const shuffleArray = (allSections) => {
+  let array = Array.from(allSections);
   for (let i = array.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [array[i], array[j]] = [array[j], array[i]];
+    let j = Math.floor(Math.random() * (i + 1));
+    let temp = array[i];
+    array[i] = array[j];
+    array[j] = temp;
   }
+  cleanArticle();
+  addNewItem(array);
 };
 
-const addNewItem = () => {};
+const addNewItem = (items) => {
+  items.forEach((item) => {
+    addSection(item);
+  });
+};
 
 addEventListener("DOMContentLoaded", () => {
-  createSection("Glaucielle");
-  createSection("Antoine");
-  createSection("Dannyel");
+  const students = ["Glaucielle", "Pedro", "Maria", "Rafael"];
+  createSection(students);
 
   const allSections = document.querySelectorAll("section");
 
   giveBackgroundColor(allSections);
   changeFontColor(allSections);
-  changeElementsOrder(allSections);
+  shuffleArray(allSections);
 });
