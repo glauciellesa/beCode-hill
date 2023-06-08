@@ -6,6 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>My colection</title>
     <link rel="stylesheet" href="assets/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
   </head>
   <body>
     <header>
@@ -25,19 +29,32 @@
       </div>
     </header>
     <main>
-      <div class="container" id="container">
+      <div class="container flex" id="container">
         <div class="card-movie">
-          <div class="movie-img" id="movie_img"></div>
-          <div class="movie-tag" id="movie_tag">
-            <p class="tag-classification"></p>
-            <p class="tag-duration" id="tag_duration"></p>
-            <p class="tag-gender" id="tag_gender"></p>
-            <p class="tag-year" id="tag_year"></p>
+          <div class="movie-img" id="movie_img">
+            <img src="assets/img/avengers.jpg" alt="avengers's picture" />
           </div>
           <div class="movie-information">
-            <p class="movie-title" id="movie_title"></p>
-            <p class="movie-year" id="movie_year"></p>
-            <p class="movie-summary" id="movie_summary"></p>
+            <p class="movie-title" id="movie_title">Avengers - endgame</p>
+            <div class="movie-tag" id="movie_tag">
+              <p class="tag-classification">12</p>
+              <p class="tag-duration" id="tag_duration">3h 1min</p>
+              <p class="tag-gender" id="tag_gender">Action, Adventure, Drama</p>
+              <p class="tag-year" id="tag_year">2019</p>
+            </div>
+            <p class="movie-orverview" id="movie_overview">
+              The grave course of events set in motion by Thanos that wiped out
+              half the universe and fractured the Avengers ranks compels the
+              remaining Avengers to take one final stand in Marvel Studios'
+              grand conclusion to twenty-two films.
+            </p>
+            <div class="movie-star">
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+            </div>
           </div>
         </div>
       </div>
