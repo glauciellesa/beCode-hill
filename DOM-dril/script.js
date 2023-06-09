@@ -48,9 +48,8 @@ const displayAlert = (e) => {
 /* (*) Remove duplicates using removeChild (duplicates are items with the exact same textContent, isEqualNode might be useful). */
 const foundDuplicates = (list) => {
   const arrayList = Array.from(list);
-  /*   console.log(arrayList);
-  arrayList.forEach((el) => console.log(el.innerHTML)); */
-  let newArray = [];
+
+  let duplicateElemetns = [];
   for (let i = 0; i < arrayList.length; i++) {
     let found = false;
     for (let j = i + 1; j < arrayList.length; j++) {
@@ -60,22 +59,45 @@ const foundDuplicates = (list) => {
       }
     }
     if (found) {
-      newArray.push(arrayList[i]);
-    } else {
-      console.log(arrayList[i]);
+      duplicateElemetns.push(arrayList[i]);
     }
   }
-  removeElement(newArray);
+  removeElement(duplicateElemetns);
 };
 
-const removeElement = (newArray) => {
-  newArray.forEach((e) => {
+const removeElement = (elements) => {
+  elements.forEach((e) => {
     e.parentNode.removeChild(e);
   });
 };
+
+/* (*) Add an eventListener on the document body, listening for keyup. When pressing the r key of the keyboard the list should get sorted in
+ a random order, however Fast and Furious should remain the first element (most important franchise ever, remember?) */
+
+const shuffleArray = (e) => {
+  const key = e.key;
+  const listItems = document.querySelectorAll("li:not(:first-child) ");
+  /* as allSections is a nodeElement we need to convert it to array */
+  if (key === "r") {
+    let array = Array.from(listItems);
+    for (let i = array.length - 1; i > 0; i--) {
+      let j = Math.floor(Math.random() * (i + 1));
+      let temp = array[i];
+      array[i] = array[j];
+      array[j] = temp;
+    }
+    addNewItem(array);
+  }
+};
+
+const addNewItem = (items) => {
+  const uList = document.querySelector("ul");
+  items.forEach((item) => {
+    uList.appendChild(item);
+  });
+};
+
 /*  
-(*) Add an eventListener on the document body, listening for keyup. When pressing the r key of the keyboard the list should get sorted in
- a random order, however Fast and Furious should remain the first element (most important franchise ever, remember?)
 (*) Modify the previous function so that when you press the letter d of your keyboard, the Fast and Furious element gets cloned
 Create a new <div> before the list, using createElement and insertBefore
 Using createElement, create a <select> tag into the previously created <div>, with two <option>s in it: "important franchises" and "normal franchises"
@@ -90,4 +112,7 @@ addEventListener("DOMContentLoaded", () => {
   }
   const listElements = document.querySelectorAll("li");
   foundDuplicates(listElements);
+
+  const body = document.querySelector("body");
+  body.addEventListener("keyup", shuffleArray);
 });
