@@ -46,10 +46,33 @@ const displayAlert = (e) => {
 };
 
 /* (*) Remove duplicates using removeChild (duplicates are items with the exact same textContent, isEqualNode might be useful). */
-const removeDuplicates = () => {
-  const arraylist = Array.from(list);
+const foundDuplicates = (list) => {
+  const arrayList = Array.from(list);
+  /*   console.log(arrayList);
+  arrayList.forEach((el) => console.log(el.innerHTML)); */
+  let newArray = [];
+  for (let i = 0; i < arrayList.length; i++) {
+    let found = false;
+    for (let j = i + 1; j < arrayList.length; j++) {
+      if (arrayList[i].isEqualNode(arrayList[j])) {
+        found = true;
+        break;
+      }
+    }
+    if (found) {
+      newArray.push(arrayList[i]);
+    } else {
+      console.log(arrayList[i]);
+    }
+  }
+  removeElement(newArray);
 };
 
+const removeElement = (newArray) => {
+  newArray.forEach((e) => {
+    e.parentNode.removeChild(e);
+  });
+};
 /*  
 (*) Add an eventListener on the document body, listening for keyup. When pressing the r key of the keyboard the list should get sorted in
  a random order, however Fast and Furious should remain the first element (most important franchise ever, remember?)
@@ -65,5 +88,6 @@ addEventListener("DOMContentLoaded", () => {
   for (let element of list) {
     element.addEventListener("click", displayAlert);
   }
-  removeDuplicates(list);
+  const listElements = document.querySelectorAll("li");
+  foundDuplicates(listElements);
 });
