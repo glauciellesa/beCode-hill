@@ -6,6 +6,23 @@ const createNode = (element, className) => {
   cardMovie.className = `${className}`;
   return cardMovie;
 };
+//createElement('div', {class: "movie-img"}, [
+// createElement('img')
+// ])
+const createElement = (element, attributes, children) => {
+  const e = document.createElement(element);
+  if (attributes != null) {
+    for (const [key, value] of Object.entries(attributes)) {
+      e.setAttribute(key, value);
+    }
+  }
+  if (children != null) {
+    for (const child of children) {
+      e.appendChild(child);
+    }
+  }
+  return e;
+};
 
 const creatStar = (parent, starNumber) => {
   for (let i = 0; i < 5; i++) {
@@ -17,12 +34,16 @@ const creatStar = (parent, starNumber) => {
   }
 };
 
-const createImage = (parent, image) => {
-  const imgMovie = createNode("div", "movie-img");
-  parent.appendChild(imgMovie);
-  const img = createNode("img", "");
-  img.src = `assets/img/${image}`;
-  imgMovie.appendChild(img);
+const createImage = (image) => {
+  //   const imgMovie = createNode("div", "movie-img");
+  //   parent.appendChild(imgMovie);
+  //   const img = createNode("img", "");
+  //   img.src = `assets/img/${image}`;
+  //   imgMovie.appendChild(img);
+
+  return createElement("div", { class: "movie-img" }, [
+    createElement("img", { src: `assets/img/${image}` }),
+  ]);
 };
 
 const createMovieTags = (parent, movie) => {
@@ -62,7 +83,7 @@ addEventListener("DOMContentLoaded", () => {
   data.forEach((movie) => {
     const cardMovie = createNode("div", "card-movie");
     container.appendChild(cardMovie);
-    createImage(cardMovie, movie.img);
+    cardMovie.appendChild(createImage(movie.img));
     createMovieInfo(cardMovie, movie);
   });
 });
