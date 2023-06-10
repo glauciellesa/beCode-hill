@@ -83,6 +83,7 @@ body {
     }
 
     & .movie-star {
+      padding-top: 0.5rem;
       display: flex;
       gap: 0.5rem;
       & .movie-star-color {
