@@ -7,13 +7,16 @@
 .flex {
   display: flex;
   align-items: center;
-  justify-content: center;
   flex-direction: column;
+  flex-wrap: wrap;
   gap: 1rem;
 }
 
 body {
   background-color: rgb(246, 246, 246);
+}
+.container {
+  padding: 1rem;
 }
 
 .user-content {
@@ -75,12 +78,16 @@ body {
         padding-right: 0.5rem;
       }
     }
-    & .movie-orverview {
+    & .movie-overview {
       padding-bottom: 1rem;
     }
 
-    & .movie-star i:not(:last-child) {
-      color: rgb(223, 171, 27);
+    & .movie-star {
+      display: flex;
+      gap: 0.5rem;
+      & .movie-star-color {
+        color: rgb(223, 171, 27);
+      }
     }
   }
 }
