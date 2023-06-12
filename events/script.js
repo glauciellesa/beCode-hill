@@ -13,7 +13,7 @@ const clickOnSquare = (e) => {
   } else if (clickedColor === "orange") {
     createDivDisplay("orange");
   }
-  createList(clickedColor);
+  createLog(clickedColor);
 };
 
 const actionSquares = document.querySelectorAll(".actionsquare");
@@ -45,7 +45,7 @@ const createDivDisplay = (color) => {
 
 /*Create a new <li> in the log below to state when the action was done */
 
-const createList = (selectedColor) => {
+const createLog = (selectedColor) => {
   const ul = document.querySelector("ul");
   const elem = document.createElement("li");
   elem.innerHTML = `[${getElapsedTime()}] Created a new ${selectedColor} square`;
@@ -53,16 +53,54 @@ const createList = (selectedColor) => {
 };
 
 /* Add an event listener on the document <body>, listening for the keypress event. (hint: 
-  have a look at this)/*
+  have a look at this)*/
 
+const body = document.querySelector("body");
 
+const deleteSquare = () => {
+  document.querySelector(".displayedsquare-wrapper").remove();
+};
 
+const deleteLogItems = () => {
+  const items = document.querySelectorAll("li");
+  let i = 0;
+  while (i < items.length) {
+    items.forEach((item) => item.remove());
+    i++;
+  }
+};
 
 /* When the spacebar is hit randomly change the background color of the whole page
-Log when the spacebar is used the same way you used for the generated squares.
-When the l key is pressed the log gets deleted (erases the generated <li>s).
+Log when the spacebar is used the same way you used for the generated squares. */
+const giveBackgroundColor = () => {
+  return "hsl(" + Math.random() * 360 + ", 100%, 50%)";
+};
+
+const pressKey = (e) => {
+  const key = e.key;
+  if (key == " ") {
+    console.log("space");
+    body.style.backgroundColor = giveBackgroundColor();
+    /* When the l key is pressed the log gets deleted (erases the generated <li>s).
  Mind you: using a delete in a for loop might cause issues (as the amount of items to loop 
-  over changes), so a while loop might be a good choice instead.
-When the s key is pressed the squares get deleted (erases the generated squares)
+  over changes), so a while loop might be a good choice instead. */
+  } else if (key == "l") {
+    deleteLogItems();
+    /* When the s key is pressed the squares get deleted (erases the generated squares) */
+  } else if (key == "s") {
+    deleteSquare();
+  }
+};
+
+body.addEventListener("keypress", pressKey);
+
+/* 
 Create a system so that when a user clicks on a generated square an alert pops-up with the 
 color of that square */
+const clickGeneratedSquare = (e) => {
+  const clickedColor = e.target.classList[1];
+  alert(clickedColor);
+};
+
+const generatedSquare = document.querySelector(".displayedsquare-wrapper");
+generatedSquare.addEventListener("click", clickGeneratedSquare);
