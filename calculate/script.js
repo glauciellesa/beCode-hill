@@ -1,6 +1,6 @@
 const calculate = (n1, operator, n2) => {
-  let number1 = Number(n1);
-  let number2 = Number(n2);
+  let number1 = parseInt(n1);
+  let number2 = parseInt(n2);
   switch (operator) {
     case "+":
       return number1 + number2;
@@ -19,19 +19,21 @@ const calculate = (n1, operator, n2) => {
 addEventListener("DOMContentLoaded", () => {
   const display = document.querySelector("#calculatorDisplay");
   const keySelected = document.querySelectorAll("button");
-  const divCalculator = document.querySelector(".calculator-keys");
+
   let firstNumber;
   let secondNumber;
   let operator;
   let result;
+  let previousKeyType;
 
   keySelected.forEach((key) => {
     key.addEventListener("click", (e) => {
       /* let attribute = e.target.getAttribute("data-type"); */
       let type = e.target.dataset.type;
       let keyValue = e.target.value;
+      let keyboardEnter = e.key;
 
-      const { previousKeyType } = divCalculator.dataset;
+      /* const { previousKeyType } = previousKeyType.dataset; */
 
       /* because I'm using input I need do use value not textConten
       input. value is for form elements to get the value of the form 
@@ -53,21 +55,33 @@ addEventListener("DOMContentLoaded", () => {
       if (type === "operator") {
         operator = keyValue;
       }
-
-      if (type === "equal") {
-        secondNumber = display.value;
-        result = calculate(firstNumber, operator, secondNumber);
-        display.value = result;
+      if (keyboardEnter === "enter") {
+        console.log(" ale");
       }
+      if (type === "equal") {
+        if (previousKeyType === "percentage") {
+          display.value = result;
+        } else {
+          secondNumber = display.value;
+          result = calculate(firstNumber, operator, secondNumber);
+          display.value = result;
+        }
+      }
+
+      if (type === "percentage") {
+        console.log(" re", display.value);
+        result = display.value / 100;
+      }
+
       if (type === "clearAll") {
         firstNumber = "";
         secondNumber = "";
         operator = "";
         display.value = "0";
-        console.log({ firstNumber }, { secondNumber }, { operator });
       }
+
       /* Attribuition of dataset */
-      divCalculator.dataset.previousKeyType = type;
+      previousKeyType = type;
     });
   });
 });
