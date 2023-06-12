@@ -76,10 +76,11 @@ const removeElement = (elements) => {
 
 const shuffleArray = (e) => {
   const key = e.key;
+
   const listItems = document.querySelectorAll("li:not(:first-child) ");
   /* as allSections is a nodeElement we need to convert it to array */
+  let array = Array.from(listItems);
   if (key === "r") {
-    let array = Array.from(listItems);
     for (let i = array.length - 1; i > 0; i--) {
       let j = Math.floor(Math.random() * (i + 1));
       let temp = array[i];
@@ -87,6 +88,20 @@ const shuffleArray = (e) => {
       array[j] = temp;
     }
     addNewItem(array);
+
+    /*  
+(*) Modify the previous function so that when you press the letter d of your keyboard, the Fast and Furious element gets cloned
+Create a new <div> before the list, using createElement and insertBefore
+ */
+  } else if (key === "d") {
+    const items = document.querySelectorAll("li");
+    const arrayItems = Array.from(items);
+    console.log(arrayItems[0]);
+    const list = document.querySelector("ul");
+    const newDiv = document.createElement("div");
+    list.insertBefore(newDiv, arrayItems[0]); //check insertBefore
+    const cloneItenList = arrayItems[0].cloneNode(true);
+    newDiv.appendChild(cloneItenList);
   }
 };
 
@@ -97,10 +112,7 @@ const addNewItem = (items) => {
   });
 };
 
-/*  
-(*) Modify the previous function so that when you press the letter d of your keyboard, the Fast and Furious element gets cloned
-Create a new <div> before the list, using createElement and insertBefore
-Using createElement, create a <select> tag into the previously created <div>, with two <option>s in it: "important franchises" and "normal franchises"
+/* Using createElement, create a <select> tag into the previously created <div>, with two <option>s in it: "important franchises" and "normal franchises"
 Add an eventListener to the <select>, on change, if the option "important franchise" is chosen, only display items of the list that have the class 
 .important. (hint: you can toggle visibility using element.style.visibility = 'hidden') */
 
