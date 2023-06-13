@@ -200,4 +200,29 @@ const LEVEL_3 = [
 ];
  */
 
-const createMaze = () => {};
+const createMaze = (level) => {
+  const main = document.querySelector("main");
+  main.classList = "myMain";
+
+  level.forEach((element) => {
+    const divContent = document.createElement("div");
+    divContent.classList = "content";
+    main.append(divContent);
+    element.forEach((childrenElem) => {
+      const children = document.createElement("div");
+      children.classList = "";
+      divContent.append(children);
+      if (childrenElem === "*") {
+        children.classList = "childrenContent walls";
+      } else if (childrenElem === ".") {
+        children.classList = "childrenContent paths";
+      } else if (childrenElem === "S") {
+        children.classList = "childrenContent startPlay";
+      } else if (childrenElem === "T") {
+        children.classList = "childrenContent treasure";
+      }
+    });
+  });
+};
+
+createMaze(LEVEL_1);

@@ -1,1 +1,40 @@
+body {
+  background-color: rgb(38, 37, 37);
+}
+.myMain {
+  padding: 5px;
+  width: fit-content;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
 
+.content {
+  width: 300px;
+  height: 22px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.childrenContent {
+  width: 20px;
+  height: 20px;
+  display: flex;
+}
+
+.walls {
+  background-color: rgb(54, 54, 54);
+}
+
+.paths {
+  background-color: rgb(172, 223, 167);
+}
+
+.startPlay {
+  background-color: rgb(255, 0, 0);
+}
+
+.treasure {
+  background-color: rgb(255, 255, 0);
+}
