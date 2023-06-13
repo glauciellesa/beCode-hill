@@ -1,13 +1,16 @@
 body {
   background-color: rgb(38, 37, 37);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .myMain {
   padding: 5px;
   width: fit-content;
   background-color: #fff;
   display: flex;
+  align-content: center;
   flex-direction: column;
-  gap: 2px;
 }
 
 .content {
@@ -31,7 +34,9 @@ body {
   background-color: rgb(172, 223, 167);
 }
 
-.startPlay {
+.player {
+  position: relative;
+
   background-color: rgb(255, 0, 0);
 }
 
