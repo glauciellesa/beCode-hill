@@ -14,10 +14,11 @@ body {
 }
 
 .content {
-  width: 300px;
+  /* width: 300px; */
+
   height: 22px;
   display: flex;
-  justify-content: space-between;
+  gap: 0.2rem;
 }
 
 .childrenContent {
