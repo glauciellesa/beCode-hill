@@ -247,25 +247,17 @@ addEventListener("DOMContentLoaded", () => {
     const divPlayer = document.getElementsByClassName("player")[0];
     const playerSize = 22;
     if (e.key === "ArrowUp") {
-      console.log("up");
-      divPlayer.style.top = upDown + "px";
       upDown -= playerSize;
-      console.log(upDown);
-    } else if (e.key === "ArrowDown") {
-      console.log("down");
       divPlayer.style.top = upDown + "px";
+    } else if (e.key === "ArrowDown") {
       upDown += playerSize;
-      console.log(upDown);
+      divPlayer.style.top = upDown + "px";
     } else if (e.key == "ArrowRight") {
-      console.log("Right");
-      divPlayer.style.left = rightLeft + "px";
       rightLeft += playerSize;
-      console.log(rightLeft);
-    } else if (e.key == "ArrowLeft") {
-      console.log("Left");
       divPlayer.style.left = rightLeft + "px";
+    } else if (e.key == "ArrowLeft") {
       rightLeft -= playerSize;
-      console.log(rightLeft);
+      divPlayer.style.left = rightLeft + "px";
     }
   };
 
