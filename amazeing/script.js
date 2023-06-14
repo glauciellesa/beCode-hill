@@ -261,68 +261,52 @@ addEventListener("DOMContentLoaded", () => {
       }
       countRow++;
     });
-    console.log({ playerPositon });
     return { playerPositon, treasurePositon };
   };
 
   const checkBeforMove = (board, playerAndTesourePosition, direction) => {
     console.log({ playerAndTesourePosition });
-    console.log({ direction });
-
     const divPlayer = document.getElementsByClassName("player")[0];
     let column = playerAndTesourePosition.playerPositon.column;
     let row = playerAndTesourePosition.playerPositon.row;
 
-    console.log(row, column);
-    console.log("key", board[row][column]);
-
     if (direction == "ArrowUp") {
-      row -= 1;
+      row--;
       if (board[row][column] == "*") {
-        console.log("no way");
-        divPlayer.classList = "childrenContent player vertical-shake";
+        divPlayer.classList = "childrenContent player shake";
         return false;
       } else {
-        console.log("vamos lá pra cima");
-        console.log("newColVal-up", row);
         divPlayer.classList = "childrenContent player ";
         return true;
       }
     } else if (direction == "ArrowDown") {
-      row += 1;
+      row++;
       if (board[row][column] == "*") {
-        console.log("no way");
-        divPlayer.classList = "childrenContent player vertical-shake";
+        divPlayer.classList = "childrenContent player shake";
         return false;
       } else {
-        console.log("vamos lá pra baixo");
-        console.log("newColVal-dow", row);
         divPlayer.classList = "childrenContent player ";
         return true;
       }
-    } /* else if (direction == "ArrowRight") {
-      if (board[column][row] == "*") {
-        console.log("no way");
-        divPlayer.classList = "horizontal-shake";
-      return false
+    } else if (direction == "ArrowRight") {
+      column++;
+      if (board[row][column] == "*") {
+        divPlayer.classList = "childrenContent player shake";
+        return false;
       } else {
-        return true
-        console.log("vamos lá para direita");
-        row += 1;
-        console.log("newColVal-rigth", row);
+        divPlayer.classList = "childrenContent player ";
+        return true;
       }
     } else if (direction == "ArrowLeft") {
-      if (board[column][row] == "*") {
-        console.log("no way");
-        divPlayer.classList = "horizontal-shake";
-      return false
+      column--;
+      if (board[row][column] == "*") {
+        divPlayer.classList = "childrenContent player shake";
+        return false;
       } else {
-        return true
-        console.log("vamos lá pra esquerda");
-        row -= 1;
-        console.log("newColVal-left", row);
+        divPlayer.classList = "childrenContent player ";
+        return true;
       }
-    } */
+    }
   };
 
   const movePlayer = (direction, board, playerAndTesourePosition) => {
@@ -343,13 +327,15 @@ addEventListener("DOMContentLoaded", () => {
     } else if (direction == "ArrowRight") {
       rightLeft += playerDimention;
       divPlayer.style.left = rightLeft + "px";
+      playerAndTesourePosition.playerPositon.column += 1;
     } else if (direction == "ArrowLeft") {
       rightLeft -= playerDimention;
       divPlayer.style.left = rightLeft + "px";
+      playerAndTesourePosition.playerPositon.column -= 1;
     }
   };
 
-  let gameLevel = LEVEL_3;
+  let gameLevel = LEVEL_1;
   const main = document.querySelector("main");
   let playerAndTesourePosition = createMaze(gameLevel);
   document.addEventListener("keydown", (e) => {

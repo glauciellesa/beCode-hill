@@ -51,12 +51,8 @@ body {
   background-color: rgb(255, 0, 0);
 }
 
-.vertical-shake {
+.shake {
   background-color: blue;
-}
-
-.horizontal-shake {
-  background-color: greenyellow;
 }
 
 .treasure {
