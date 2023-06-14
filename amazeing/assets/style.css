@@ -1,24 +1,32 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
 body {
   background-color: rgb(38, 37, 37);
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 2rem;
 }
 .myMain {
+  position: relative;
   padding: 5px;
   width: fit-content;
   background-color: #fff;
   display: flex;
   align-content: center;
   flex-direction: column;
+  gap: 2px;
 }
 
 .content {
   /* width: 300px; */
-
-  height: 22px;
+  height: 20px;
   display: flex;
-  gap: 0.2rem;
+  gap: 2px;
 }
 
 .childrenContent {
@@ -36,8 +44,7 @@ body {
 }
 
 .player {
-  position: relative;
-
+  position: absolute;
   background-color: rgb(255, 0, 0);
 }
 
