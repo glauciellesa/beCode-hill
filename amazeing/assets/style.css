@@ -44,8 +44,19 @@ body {
 }
 
 .player {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
   position: absolute;
   background-color: rgb(255, 0, 0);
+}
+
+.vertical-shake {
+  background-color: blue;
+}
+
+.horizontal-shake {
+  background-color: greenyellow;
 }
 
 .treasure {
