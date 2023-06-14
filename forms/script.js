@@ -53,13 +53,14 @@ Finally, use a change listener on the <select> field to toggle a dark mode on th
 const toggleTheme = (e) => {
   const theme = e.target.value;
   const body = document.querySelector("body");
+  body.style.backgroundColor = "white";
 
   if (theme === "light") {
-    body.style.backgroundColor = "black";
-    body.style.color = "white";
-  } else {
     body.style.backgroundColor = "white";
     body.style.color = "black";
+  } else {
+    body.style.backgroundColor = "black";
+    body.style.color = "white";
   }
 };
 
