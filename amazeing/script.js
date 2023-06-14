@@ -24,6 +24,7 @@ const setPlayer = (divContent, i, countColumns) => {
 const createMaze = (level) => {
   const main = document.querySelector("main");
   main.classList = "myMain";
+  main.replaceChildren();
   let countRow = 0;
   let playerPositon = {
     column: 0,
@@ -62,7 +63,6 @@ const createMaze = (level) => {
 };
 
 const checkBeforMove = (board, playerAndTesourePosition, direction) => {
-  console.log({ playerAndTesourePosition });
   const divPlayer = document.getElementsByClassName("player")[0];
   let column = playerAndTesourePosition.playerPositon.column;
   let row = playerAndTesourePosition.playerPositon.row;
@@ -339,11 +339,29 @@ addEventListener("DOMContentLoaded", () => {
     ["*", "*", "*", "*", "*", "*", "*", "*"],
   ];
 
-  let gameLevel = LEVEL_1;
+  const levels = [LEVEL_1, LEVEL_2, LEVEL_3];
+
+  let currentLevel = 0;
+  let gameLevel = levels[currentLevel];
   let playerAndTesourePosition = createMaze(gameLevel);
 
   document.addEventListener("keydown", (e) => {
     let direction = e.key;
-    movePlayer(direction, gameLevel, playerAndTesourePosition);
+    if (
+      playerAndTesourePosition.playerPositon.column ==
+        playerAndTesourePosition.treasurePositon.column &&
+      playerAndTesourePosition.playerPositon.row ==
+        playerAndTesourePosition.treasurePositon.row
+    ) {
+      if (currentLevel < levels.length - 1) {
+        currentLevel++;
+      } else {
+        currentLevel = 0;
+      }
+      gameLevel = levels[currentLevel];
+      playerAndTesourePosition = createMaze(gameLevel);
+    } else {
+      movePlayer(direction, gameLevel, playerAndTesourePosition);
+    }
   });
 });
