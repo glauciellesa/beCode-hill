@@ -347,6 +347,7 @@ addEventListener("DOMContentLoaded", () => {
 
   document.addEventListener("keydown", (e) => {
     let direction = e.key;
+
     if (
       playerAndTesourePosition.playerPositon.column ==
         playerAndTesourePosition.treasurePositon.column &&
@@ -358,6 +359,7 @@ addEventListener("DOMContentLoaded", () => {
       } else {
         currentLevel = 0;
       }
+
       gameLevel = levels[currentLevel];
       playerAndTesourePosition = createMaze(gameLevel);
     } else {
