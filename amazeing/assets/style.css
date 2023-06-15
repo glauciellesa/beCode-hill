@@ -24,31 +24,34 @@ body {
 
 .content {
   /* width: 300px; */
-  height: 20px;
+  height: 40px;
   display: flex;
   gap: 2px;
 }
 
 .childrenContent {
-  width: 20px;
-  height: 20px;
+  width: 40px;
+  height: 40px;
   display: flex;
 }
 
 .walls {
-  background-color: rgb(54, 54, 54);
+  background-image: url(img/wall.jpg);
+  /*   background-color: rgb(54, 54, 54); */
 }
 
 .paths {
-  background-color: rgb(172, 223, 167);
+  background-image: url(img/path.jpg);
+  /*   background-color: rgb(172, 223, 167); */
 }
 
 .player {
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  /*  border-radius: 50%; */
   position: absolute;
-  background-color: rgb(255, 0, 0);
+  background-image: url(img/run.png);
+  /*   background-color: rgb(255, 0, 0); */
 }
 
 .treasure {

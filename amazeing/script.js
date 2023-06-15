@@ -4,7 +4,7 @@ const setPlayer = (divContent, i, countColumns) => {
   player.classList = "childrenContent player";
   player.setAttribute("id", "player");
 
-  let sizeSquare = 20;
+  let sizeSquare = 40;
   let paddingMymain = 5;
   let gapMymain = 2;
   let gapContent = 3;
@@ -113,7 +113,7 @@ const movePlayer = (direction, board, playerAndTesourePosition) => {
   let upDown = Number(top);
   let rightLeft = Number(left);
 
-  const playerDimention = 22;
+  const playerDimention = 42;
   let canMove = checkBeforMove(board, playerAndTesourePosition, direction);
   if (!canMove) {
     return;
