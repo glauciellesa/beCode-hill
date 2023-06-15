@@ -36,14 +36,15 @@ body {
 }
 
 .walls {
-  background-image: url(img/flor.png);
+  background-image: url(img/wall.jpg);
+
   /*   background-color: rgb(54, 54, 54); */
 }
 
 .paths {
-  /*   background-image: url(img/path.jpg);
- */
-  background-color: rgb(125, 170, 127);
+  background-image: url(img/path.jpg);
+
+  /* background-color: rgb(125, 170, 127); */
 }
 
 .player {
