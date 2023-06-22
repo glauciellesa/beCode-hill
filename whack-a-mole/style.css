@@ -1,0 +1,90 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+.flex {
+  display: flex;
+  gap: 1rem;
+}
+
+.container {
+  width: 100%;
+  padding: 2rem;
+  flex-direction: column;
+  width: 100vw;
+  align-items: center;
+}
+
+.container h1 {
+  color: brown;
+  font-size: 2.4rem;
+}
+
+.info {
+  color: brown;
+  width: 50%;
+  justify-content: space-between;
+  font-size: 1.8rem;
+  padding-bottom: 1rem;
+  font-weight: 700;
+}
+
+.infoSpan {
+  color: rgb(70, 69, 69);
+  font-weight: 200;
+}
+
+.table {
+  position: relative;
+  width: 50%;
+  padding: 2rem;
+  width: fit-content;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.12), 0 2px 2px rgba(0, 0, 0, 0.12),
+    0 4px 4px rgba(0, 0, 0, 0.12), 0 8px 8px rgba(0, 0, 0, 0.12),
+    0 16px 16px rgba(0, 0, 0, 0.12);
+}
+
+.play {
+  text-transform: uppercase;
+  font-size: 4rem;
+  border-radius: 2rem;
+  text-align: center;
+  position: absolute;
+  top: 11.2rem;
+  padding: 2rem;
+  width: 90%;
+  color: aliceblue;
+}
+
+.start {
+  background-color: rgba(11, 80, 15, 0.503);
+}
+.end {
+  background-color: rgba(255, 0, 0, 0.503);
+}
+
+.squareLine {
+  display: flex;
+  flex-direction: row;
+  gap: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+
+.squareColumn {
+  display: flex;
+  flex-direction: column;
+  width: 8rem;
+  height: 8rem;
+  border-radius: 50%;
+  background-color: bisque;
+}
+
+.happyMole {
+  background-color: green;
+}
+
+.sadMole {
+  background-color: red;
+}
