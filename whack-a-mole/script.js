@@ -33,7 +33,7 @@ const selectRadomHole = () => {
 };
 
 const setTimeToPlay = (timer) => {
-  let randomTime = Math.floor(Math.random() * 500) + 500;
+  let randomTime = Math.floor(Math.random() * 300) + 500;
   const refPlayTime = setTimeout(() => {
     if (timer.value > 0) {
       selectRadomHole();
@@ -64,7 +64,7 @@ const scoreClick = (score) => {
     if (hole.classList.contains("happyMole")) {
       hole.classList.remove("happyMole");
       score += 1;
-    } else if (hole.classList.contains("sadMole")) {
+    } else if (!hole.classList.contains("happyMole")) {
       hole.classList.remove("sadMole");
       score -= 1;
     }
