@@ -33,7 +33,7 @@ const selectRadomHole = () => {
 };
 
 const setTimeToPlay = (timer) => {
-  let randomTime = Math.floor(Math.random() * 300) + 500;
+  let randomTime = Math.floor(Math.random() * 400) + 500;
   const refPlayTime = setTimeout(() => {
     if (timer.value > 0) {
       selectRadomHole();
