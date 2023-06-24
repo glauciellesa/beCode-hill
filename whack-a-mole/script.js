@@ -32,12 +32,12 @@ const selectRadomHole = () => {
   }
 };
 
-const setTimeToPlay = (timer) => {
+const changeSpeedMole = (timer) => {
   let randomTime = Math.floor(Math.random() * 400) + 500;
   const refPlayTime = setTimeout(() => {
     if (timer.value > 0) {
       selectRadomHole();
-      setTimeToPlay(timer);
+      changeSpeedMole(timer);
     } else {
       clearInterval(refPlayTime);
     }
@@ -94,7 +94,7 @@ window.addEventListener("DOMContentLoaded", () => {
   let timer = { value: 30 }; //estudar sobre objeto referencia
   startGame.addEventListener("click", () => {
     startEnd.style.display = "none";
-    setTimeToPlay(timer);
+    changeSpeedMole(timer);
     moleDiv.addEventListener("mousedown", scoreClick(0));
     updateTimer(timer);
   });
