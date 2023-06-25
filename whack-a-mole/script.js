@@ -12,11 +12,10 @@ const createHole = (mole, moleDiv) => {
   });
 };
 
-const selectRadomHole = () => {
+const createRadomHole = () => {
   const randomHole = Math.floor(Math.random() * 11);
   const toString = randomHole.toString();
   const hole = document.getElementById(toString);
-  console.log({ hole }, toString);
   const previousHole = document.querySelector("[data-hole=true]");
   console.log();
   if (previousHole) {
@@ -36,7 +35,7 @@ const changeSpeedMole = (timer) => {
   let randomTime = Math.floor(Math.random() * 400) + 500;
   const refPlayTime = setTimeout(() => {
     if (timer.value > 0) {
-      selectRadomHole();
+      createRadomHole();
       changeSpeedMole(timer);
     } else {
       clearInterval(refPlayTime);
@@ -81,21 +80,22 @@ const updateScore = (score) => {
   }
 };
 
+const startGame = (e) => {
+  let timer = { value: 30 }; //estudar sobre objeto referencia
+  e.target.style.display = "none";
+  changeSpeedMole(timer);
+  updateTimer(timer);
+};
+
 window.addEventListener("DOMContentLoaded", () => {
   const moleDiv = document.getElementById("mole");
-  const mole = [
+  const table = [
     [".", ".", ".", "."],
     [".", ".", ".", "."],
     [".", ".", ".", "."],
   ];
-  createHole(mole, moleDiv);
-
-  const startGame = document.getElementById("startEnd");
-  let timer = { value: 30 }; //estudar sobre objeto referencia
-  startGame.addEventListener("click", () => {
-    startEnd.style.display = "none";
-    changeSpeedMole(timer);
-    moleDiv.addEventListener("mousedown", scoreClick(0));
-    updateTimer(timer);
-  });
+  createHole(table, moleDiv);
+  const startBtn = document.getElementById("startEnd");
+  startBtn.addEventListener("click", startGame);
+  moleDiv.addEventListener("mousedown", scoreClick(0));
 });

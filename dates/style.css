@@ -1,0 +1,65 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.exercise-1 {
+  display: none;
+}
+
+.flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.timeContainer {
+  background-color: rgb(231, 231, 231);
+  padding: 1rem;
+  width: fit-content;
+  gap: 2rem;
+}
+.date-content {
+  width: 14rem;
+  flex-direction: column;
+  border-radius: 2rem;
+}
+.weekday,
+.year {
+  width: 100%;
+  text-align: center;
+  font-size: 4rem;
+  color: #fff;
+  background-color: brown;
+}
+.weekday {
+  border-radius: 2rem 2rem 0 0;
+  border: 5px solid rgba(151, 43, 43, 0.795);
+  border-bottom: none;
+}
+
+.year {
+  border-radius: 0 0 2rem 2rem;
+  border: 5px solid rgba(151, 43, 43, 0.795);
+  border-top: none;
+}
+
+.day,
+.month {
+  width: 100%;
+  font-size: 6rem;
+  text-align: center;
+  background-color: #fff;
+  color: rgb(163, 163, 163);
+  border-left: 5px solid #c1c1c1;
+  border-right: 5px solid #c1c1c1;
+}
+
+.time {
+  color: rgb(63, 63, 63);
+  font-weight: bolder;
+  font-size: 4.4rem;
+}
+.second {
+  font-size: 2rem;
+}
