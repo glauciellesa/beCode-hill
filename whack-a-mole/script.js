@@ -32,9 +32,9 @@ const createRadomHole = () => {
 };
 
 const changeSpeedMole = (timer) => {
-  let randomTime = Math.floor(Math.random() * 400) + 500;
+  let randomTime = Math.floor(Math.random() * 400) + 900;
   const refPlayTime = setTimeout(() => {
-    if (timer.value > 0) {
+    if (timer.second > 0) {
       createRadomHole();
       changeSpeedMole(timer);
     } else {
@@ -45,15 +45,15 @@ const changeSpeedMole = (timer) => {
 
 const updateTimer = (time) => {
   const timeLeftDiv = document.getElementById("infoTime");
-  timeLeftDiv.textContent = time.value;
+  timeLeftDiv.textContent = time.second;
   const refInterval = setInterval(() => {
-    if (time.value > 0) {
-      time.value--;
+    if (time.second > 0) {
+      time.second--;
     } else {
       alert("Game over!!!");
       clearInterval(refInterval);
     }
-    timeLeftDiv.textContent = time.value;
+    timeLeftDiv.textContent = time.second;
   }, 1000);
 };
 
@@ -71,10 +71,10 @@ const scoreClick = (score) => {
   };
 };
 
-const updateScore = (timer) => {
-  if (timer.score >= 0) {
+const updateScore = (score) => {
+  if (score > 0) {
     const scoreDiv = document.getElementById("infoScore");
-    scoreDiv.textContent = timer.score;
+    scoreDiv.textContent = score;
   } else {
     alert("You lost :(");
     location.reload();
@@ -82,7 +82,7 @@ const updateScore = (timer) => {
 };
 
 const startGame = (e) => {
-  let timer = { value: 30 }; //
+  let timer = { second: 30 }; //
   // estudar sobre objeto referencia
   if (e) {
     e.target.style.display = "none";
