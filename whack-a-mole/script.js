@@ -57,38 +57,38 @@ const updateTimer = (time) => {
   }, 1000);
 };
 
-const scoreClick = (score) => {
+const scoreClick = (controls) => {
+  console.log("click", controls);
   return (e) => {
     const hole = e.target;
     if (hole.classList.contains("happyMole")) {
       hole.classList.remove("happyMole");
-      score += 1;
+      controls.score += 1;
     } else if (!hole.classList.contains("happyMole")) {
       hole.classList.remove("sadMole");
-      score -= 1;
+      controls.score -= 1;
     }
-    updateScore(score);
+    updateScore(controls);
   };
 };
 
-const updateScore = (score) => {
-  if (score > 0) {
+const updateScore = (controls) => {
+  console.log("update", controls);
+  if (controls.score > 0) {
     const scoreDiv = document.getElementById("infoScore");
-    scoreDiv.textContent = score;
+    scoreDiv.textContent = controls.score;
   } else {
     alert("You lost :(");
     location.reload();
   }
 };
 
-const startGame = (e) => {
-  let timer = { second: 30 }; //
-  // estudar sobre objeto referencia
+const startGame = (controls, e) => {
   if (e) {
     e.target.style.display = "none";
   }
-  changeSpeedMole(timer);
-  updateTimer(timer);
+  changeSpeedMole(controls);
+  updateTimer(controls);
 };
 
 window.addEventListener("DOMContentLoaded", () => {
@@ -100,6 +100,11 @@ window.addEventListener("DOMContentLoaded", () => {
   ];
   createHole(table, moleDiv);
   const startBtn = document.getElementById("startEnd");
-  startBtn.addEventListener("click", startGame);
-  moleDiv.addEventListener("mousedown", scoreClick(0));
+  let controls = { second: 30, score: 0 };
+
+  // estudar sobre objeto referencia
+  startBtn.addEventListener("click", (evt) => {
+    startGame(controls, evt);
+  });
+  moleDiv.addEventListener("mousedown", scoreClick(controls));
 });
