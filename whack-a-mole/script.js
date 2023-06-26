@@ -71,18 +71,22 @@ const scoreClick = (score) => {
   };
 };
 
-const updateScore = (score) => {
-  if (score > 0) {
+const updateScore = (timer) => {
+  if (timer.score >= 0) {
     const scoreDiv = document.getElementById("infoScore");
-    scoreDiv.textContent = score;
+    scoreDiv.textContent = timer.score;
   } else {
     alert("You lost :(");
+    location.reload();
   }
 };
 
 const startGame = (e) => {
-  let timer = { value: 30 }; //estudar sobre objeto referencia
-  e.target.style.display = "none";
+  let timer = { value: 30 }; //
+  // estudar sobre objeto referencia
+  if (e) {
+    e.target.style.display = "none";
+  }
   changeSpeedMole(timer);
   updateTimer(timer);
 };
