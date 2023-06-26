@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <div
+      class="container"
+      style="display: flex; flex-direction: column; gap: 1rem"
+    >
+      <h1>Predict the age of a name</h1>
+      <label for="name" style="display: block">Type a name</label>
+      <input type="text" id="name" style="display: block; width: fit-content" />
+      <div class="country">
+        <label for="cars">Choose a country:</label>
+
+        <select name="country" id="countries">
+          <option value="BR">Brasil</option>
+          <option value="BE">Belgium</option>
+          <option value="PT">Portugal</option>
+          <option value="FR">France</option>
+          <option value="MX">Mexico</option>
+        </select>
+      </div>
+      <button style="width: fit-content">Verify age of the name</button>
+      <div class="ageContent"></div>
+    </div>
+  </body>
+</html>
