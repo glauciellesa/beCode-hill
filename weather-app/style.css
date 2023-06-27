@@ -1,0 +1,36 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+.weather-inf {
+  display: grid;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.container-weather {
+  padding: 1rem;
+  width: 10rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  border-radius: 0.8rem;
+  box-shadow: 0 0 20px 2px rgba(0, 0, 0, 0.06),
+    0 -2px 20px 2px rgb(255, 255, 255);
+}
+
+/* <div class="day-weather">Tuesday</div>
+      <div class="icon-weather"></div>
+      <div class="max-weather">Max: <span id="max"></span></div>
+      <div class="max-weather">Min: <span id="min"></span></div>
+      <div class="description-weather"></div>
+      
+      */
+
+@media (width > 400px) {
+  .weather-inf {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
