@@ -10,18 +10,18 @@ Also add a <select> field with a few countries in it, to narrow down the search 
 Store the previous results in a localStorage so you don't have to fetch them again!
 Using the promise syntax? Try to use async/await instead! */
 
-const displayAge = (name, age, country) => {
+const displayData = (name, age, country) => {
   const divDisplay = document.querySelector(".ageContent");
   const newParagraph = document.createElement("p");
   newParagraph.textContent = `The name ${name} from ${country} has ${age} year old`;
   divDisplay.append(newParagraph);
 };
 
-const verifyNameAge = (name, countryId) => {
+const getData = (name, countryId, cb) => {
   fetch(`https://api.agify.io?name=${name}&country_id=${countryId}`)
     .then((response) => response.json())
     .then((data) => {
-      displayAge(name, data.age, countryId);
+      cb(name, data.age, countryId);
     });
 };
 
@@ -31,14 +31,26 @@ const getSelectedCountry = () => {
   return output;
 };
 
-getSelectedCountry();
-
 window.addEventListener("DOMContentLoaded", () => {
   const btn = document.querySelector("button");
-
+  // Retrieve the object from storage
+  let retrievedObject = JSON.parse(localStorage.getItem("data") ?? "[]");
+  console.log("retrievedObject: ", retrievedObject);
+  retrievedObject.forEach((element) => {
+    console.log(element);
+    displayData(element.name, element.age, element.countryId);
+  });
   btn.addEventListener("click", () => {
     const name = document.getElementById("name").value;
     const country = getSelectedCountry();
-    verifyNameAge(name, country);
+    getData(name, country, (name, age, countryId) => {
+      const localData = JSON.parse(localStorage.getItem("data") ?? "[]");
+      localData.push({ name, age, country_id: countryId });
+      localStorage.setItem("data", JSON.stringify(localData));
+      localData.forEach((element) => {
+        console.log(element);
+        displayData(element.name, element.age, element.countryId);
+      });
+    });
   });
 });
