@@ -17,9 +17,7 @@ const createElement = (element, attributes, children) => {
   return e;
 };
 
-const createTextNode = (text) => {
-  return document.createTextNode(text);
-};
+const createTextNode = (text) => document.createTextNode(text);
 
 const createWeatherCard = (weatherWeek) => {
   const weatherInfo = document.querySelector(".weather-inf");

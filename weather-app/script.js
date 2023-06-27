@@ -12,8 +12,48 @@ The application must be responsive and mobile friendly
     console.log({ dayDate }); 
 */
 
+const createElement = (element, attributes, children) => {
+  const e = document.createElement(element);
+  if (attributes != null) {
+    for (const [key, value] of Object.entries(attributes)) {
+      e.setAttribute(key, value);
+    }
+  }
+  if (children != null) {
+    for (const child of children) {
+      e.appendChild(child);
+    }
+  }
+  return e;
+};
+
+const createTextNode = (text) => document.createTextNode(text);
+
+const displayWeatherCard = (weatherWeek) => {
+  const weatherInfo = document.querySelector(".weather-inf");
+  weatherWeek.forEach((element) => {
+    const containerDiv = createElement("div", { class: "container-weather" }, [
+      createElement("div", { class: "day-weather" }, [
+        createTextNode(element.weekDay),
+      ]),
+      createElement("img", {
+        src: `http://openweathermap.org/img/w/${element.icon}.png`,
+      }),
+      createElement("div", { class: "max-weather" }, [
+        createTextNode(`Max: ${Math.floor(element.maxTemperature)}˚`),
+      ]),
+      createElement("div", { class: "min-weather" }, [
+        createTextNode(`Min: ${Math.floor(element.minTemperature)}˚`),
+      ]),
+      createElement("div", { class: "description-weather" }, [
+        createTextNode(element.weatherInfo),
+      ]),
+    ]);
+    weatherInfo.append(containerDiv);
+  });
+};
+
 const reduceDataWeather = (data) => {
-  console.log(data);
   const dataWeather = data.list;
   const date = new Date().getDate();
   let today = date;
@@ -30,9 +70,8 @@ const reduceDataWeather = (data) => {
     });
     if (today == dayApi) {
       if (tempMax < dataWeather[i].main.temp_max) {
-        console.log("i", dataWeather[i].weather[0]);
         icon = dataWeather[i].weather[0].icon;
-        weatherDescription = dataWeather[i].weather[0].main;
+        weatherDescription = dataWeather[i].weather[0].description;
         tempMax = dataWeather[i].main.temp_max;
       }
       if (tempMin > dataWeather[i].main.temp_min) {
@@ -51,8 +90,48 @@ const reduceDataWeather = (data) => {
       today = dayApi;
     }
   }
-  console.log({ newData }, { dataWeather });
-  return newData;
+
+  displayWeatherCard(newData);
+};
+
+const displayCurrentWeather = (data) => {
+  console.log(data);
+  const icon = data.list[0].weather[0].icon;
+
+  const currentCity = createElement("div", { class: "currente-city" }, [
+    createTextNode(`${data.city.name} - ${data.city.country}`),
+  ]);
+  const currentTemperature = createElement(
+    "div",
+    { class: "current-info-temp" },
+    [
+      createElement("div", { class: "temperature" }, [
+        createTextNode(`${Math.floor(data.list[0].main.temp)}˚`),
+      ]) /* ,
+      createElement("div", { class: "description" }, [
+        createTextNode(data.list[0].weather[0].description),
+      ]) */,
+      createElement("img", {
+        src: `http://openweathermap.org/img/w/${data.list[0].weather[0].icon}.png`,
+      }),
+    ]
+  );
+  const currentTempMoreInfo = createElement(
+    "div",
+    { class: "current-more-info" },
+    [
+      createElement("div", { class: "humidity" }, [
+        createTextNode(`Humidity: ${data.list[0].main.humidity}%`),
+      ]),
+      createElement("div", { class: "wind" }, [
+        createTextNode(`Wind: ${data.list[0].wind.speed} k/h`),
+      ]),
+    ]
+  );
+
+  document.querySelector(".current-weather-info").append(currentTemperature);
+  document.querySelector(".current-weather-info").append(currentTempMoreInfo);
+  document.querySelector(".current-city").append(currentCity);
 };
 
 const getWeatherData = (location) => {
@@ -63,13 +142,15 @@ const getWeatherData = (location) => {
     .then((response) => response.json())
     .then((data) => {
       reduceDataWeather(data);
+      displayCurrentWeather(data);
     });
 };
 
 const cityInput = document.querySelector("#city_input");
-
+const searchInfo = document.querySelector(".search-info");
 document.querySelector("button").addEventListener("click", () => {
   console.log("btn clicked");
+  searchInfo.style.display = "none";
   getWeatherData(cityInput.value);
 });
 
