@@ -32,7 +32,8 @@ const createRadomHole = () => {
 };
 
 const changeSpeedMole = (timer) => {
-  let randomTime = Math.floor(Math.random() * 400) + 900;
+  console.log(timer);
+  let randomTime = Math.floor(Math.random() * 400) + 300;
   const refPlayTime = setTimeout(() => {
     if (timer.second > 0) {
       createRadomHole();
@@ -79,7 +80,8 @@ const updateScore = (controls) => {
     scoreDiv.textContent = controls.score;
   } else {
     alert("You lost :(");
-    location.reload();
+    startGame((controls.second = 30), (controls.score = 0));
+    /* location.reload(); */
   }
 };
 
