@@ -81,7 +81,7 @@ const updateScore = (controls) => {
   } else {
     alert("You lost :(");
     startGame((controls.second = 30), (controls.score = 0));
-    /* location.reload(); */
+    location.reload();
   }
 };
 
