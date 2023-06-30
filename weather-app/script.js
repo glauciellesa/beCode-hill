@@ -28,7 +28,7 @@ const displayWeatherCard = (weatherWeek) => {
   weatherWeek.forEach((element) => {
     const containerDiv = createElement("div", { class: "container-weather" }, [
       createElement("div", { class: "day-weather" }, [
-        createTextNode(element.weekDay),
+        createTextNode(element.weekDayLong),
       ]),
       createElement("img", {
         src: "imgIcon",
