@@ -10,17 +10,21 @@
     <!--     <script src="dayWeather.js" type="module" defer></script> -->
   </head>
   <body>
-    <div class="container">
-      <div class="search-info">
-        <div class="city-input">
-          <label for="city_input"> City name: </label>
-          <input type="text" id="city_input" />
-        </div>
-        <button class="btn-search" type="submit">Verify Weather</button>
+    <div class="search-info">
+      <div class="city-input">
+        <label for="city_input"> City name: </label>
+        <input type="text" id="city_input" />
       </div>
+      <button class="btn-search" type="submit">Verify Weather</button>
+    </div>
+    <div class="container">
       <div class="current-weather">
-        <div class="current-weather-info"></div>
-        <div class="current-city"></div>
+        <div class="layer">
+          <div class="current-weather-info"></div>
+          <div class="current-city">
+            <div class="img-city"></div>
+          </div>
+        </div>
       </div>
       <div class="weather-inf"></div>
     </div>
