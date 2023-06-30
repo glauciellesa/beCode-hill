@@ -4,12 +4,6 @@ In the home page the user can enter the city of his/her choice
 On clicking the SUBMIT button or pressing ENTER the application 
 will display the weather for the next 5 days
 The application must be responsive and mobile friendly
-    /* let tempMin = data[i].main.temp_min;
-    let tempMax = data[i].main.temp_max;
-    let dayDate = new Date(data[i].dt_txt).getDate();
-    console.log({ tempMax });
-    console.log({ tempMin });
-    console.log({ dayDate }); 
 */
 
 const createElement = (element, attributes, children) => {
@@ -96,9 +90,6 @@ const reduceDataWeather = (data) => {
 };
 
 const displayCurrentWeather = (data) => {
-  console.log(data);
-  const icon = data.list[0].weather[0].icon;
-
   const currentCity = createElement("div", { class: "currente-city" }, [
     createTextNode(`${data.city.name} - ${data.city.country}`),
   ]);
@@ -141,7 +132,6 @@ const getWeatherData = (location) => {
   fetch(url)
     .then((response) => response.json())
     .then((data) => {
-      console.log({ data });
       reduceDataWeather(data);
       displayCurrentWeather(data);
     });
@@ -164,13 +154,11 @@ const displayImage = (imgLink) => {
 };
 
 const runImgArray = (data) => {
-  console.log(data);
   let i = 0;
   displayImage(data[i].urls.regular);
   i++;
   setInterval(() => {
     if (i < data.length) {
-      console.log(data[i].urls.regular);
       displayImage(data[i].urls.regular);
     } else {
       i = 0;
@@ -193,9 +181,9 @@ const cityInput = document.querySelector("#city_input");
 const searchInfo = document.querySelector(".search-info");
 const container = document.querySelector(".container");
 container.style.display = "none";
-let city = cityInput.value;
 
 document.querySelector("button").addEventListener("click", () => {
+  let city = cityInput.value;
   if (city) {
     searchInfo.style.display = "none";
     container.style.display = "inline-block";
@@ -215,7 +203,5 @@ cityInput.addEventListener("keyup", function (e) {
     container.style.display = "inline-block";
     getWeatherData(e.target.value);
     getImageData(e.target.value);
-  } else {
-    alert("Press enter or click in the button");
   }
 });
