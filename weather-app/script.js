@@ -193,20 +193,29 @@ const cityInput = document.querySelector("#city_input");
 const searchInfo = document.querySelector(".search-info");
 const container = document.querySelector(".container");
 container.style.display = "none";
+let city = cityInput.value;
+
 document.querySelector("button").addEventListener("click", () => {
-  console.log("btn clicked");
-  searchInfo.style.display = "none";
-  container.style.display = "inline-block";
-  getWeatherData(cityInput.value);
-  getImageData(cityInput.value);
+  if (city) {
+    searchInfo.style.display = "none";
+    container.style.display = "inline-block";
+    getWeatherData(cityInput.value);
+    getImageData(cityInput.value);
+  } else {
+    alert("Type a city name");
+  }
 });
 
 /* Add keydown event listener to document rather than button */
-/* document.addEventListener("keyup", function (e) {
-  if (e.key === "Enter") {
-    console.log("Enter key is pressed");
-    getWeatherData();
+
+cityInput.addEventListener("keyup", function (e) {
+  if (e.code === "Enter") {
+    console.log(e.target.value);
+    searchInfo.style.display = "none";
+    container.style.display = "inline-block";
+    getWeatherData(e.target.value);
+    getImageData(e.target.value);
   } else {
     alert("Press enter or click in the button");
   }
-}); */
+});

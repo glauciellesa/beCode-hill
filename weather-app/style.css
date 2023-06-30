@@ -59,7 +59,7 @@ body {
   align-items: center;
 
   /* other styles (left, top, right, and padding) */
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.85), transparent);
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.95), transparent);
 }
 
 .current-weather-info {
@@ -111,8 +111,7 @@ body {
 .weather-inf {
   padding: 1rem;
   display: grid;
-  justify-content: center;
-  gap: 1rem;
+  justify-content: space-around;
 }
 
 .container-weather {
@@ -127,13 +126,6 @@ body {
     0 -2px 20px 2px rgb(255, 255, 255);
 }
 
-/* <div class="day-weather">Tuesday</div>
-      <div class="icon-weather"></div>
-      <div class="max-weather">Max: <span id="max"></span></div>
-      <div class="max-weather">Min: <span id="min"></span></div>
-      <div class="description-weather"></div>
-      
-      */
 @media (600px < width <= 1024px) {
   .body {
     height: 100dvh;
@@ -161,6 +153,7 @@ body {
 
   .weather-inf {
     grid-template-columns: repeat(3, 1fr);
+    justify-content: space-around;
   }
 
   .current-more-inf {
@@ -194,5 +187,6 @@ body {
 
   .weather-inf {
     grid-template-columns: repeat(5, 1fr);
+    justify-content: space-around;
   }
 }
