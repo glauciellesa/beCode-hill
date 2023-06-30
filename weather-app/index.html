@@ -9,6 +9,7 @@
     />
     <title>Weather app</title>
     <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="script.js" defer></script>
     <!--     <script src="dayWeather.js" type="module" defer></script> -->
   </head>
@@ -31,6 +32,9 @@
             <div class="img-city"></div>
           </div>
         </div>
+      </div>
+      <div class="chart">
+        <canvas id="myChart" class="myChart"></canvas>
       </div>
       <div class="weather-inf"></div>
     </div>

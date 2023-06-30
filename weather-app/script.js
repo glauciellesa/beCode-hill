@@ -57,14 +57,22 @@ const reduceDataWeather = (data) => {
   let tempMax = Number.MIN_VALUE;
   let icon;
   let weatherDescription;
+  let temp;
 
   for (let i = 0; i < dataWeather.length; i++) {
     let dayApi = new Date(dataWeather[i].dt_txt).getDate();
-    let weekDay = new Date(dataWeather[i].dt_txt).toLocaleDateString("en", {
+    let weekDayLong = new Date(dataWeather[i].dt_txt).toLocaleDateString("en", {
       weekday: "long",
     });
+    let weekDayShort = new Date(dataWeather[i].dt_txt).toLocaleDateString(
+      "en",
+      {
+        weekday: "short",
+      }
+    );
     if (today == dayApi) {
       if (tempMax < dataWeather[i].main.temp_max) {
+        temp = Math.round(dataWeather[i].main.temp);
         icon = dataWeather[i].weather[0].icon;
         weatherDescription = dataWeather[i].weather[0].description;
         tempMax = dataWeather[i].main.temp_max;
@@ -74,19 +82,21 @@ const reduceDataWeather = (data) => {
       }
     } else {
       newData.push({
-        weekDay: weekDay,
+        weekDayShort: weekDayShort,
+        weekDayLong: weekDayLong,
         icon: icon,
         weatherInfo: weatherDescription,
         minTemperature: tempMin,
         maxTemperature: tempMax,
+        temp,
       });
       tempMin = Number.MAX_VALUE;
       tempMax = Number.MIN_VALUE;
       today = dayApi;
     }
   }
-
   displayWeatherCard(newData);
+  createChart(newData);
 };
 
 const diplayTodayDate = () => {
@@ -110,7 +120,7 @@ const displayCurrentWeather = (data) => {
     { class: "current-info-temp" },
     [
       createElement("div", { class: "temperature" }, [
-        createTextNode(`${Math.floor(data.list[0].main.temp)}˚`),
+        createTextNode(`${Math.round(data.list[0].main.temp)}˚`),
       ]) /* ,
       createElement("div", { class: "description" }, [
         createTextNode(data.list[0].weather[0].description),
@@ -177,7 +187,7 @@ const runImgArray = (data) => {
       i = 0;
     }
     i++;
-  }, 1000);
+  }, 2000);
 };
 
 const getImageData = (location) => {
@@ -217,3 +227,40 @@ cityInput.addEventListener("keyup", function (e) {
     getImageData(e.target.value);
   }
 });
+
+const createChart = (data) => {
+  console.log({ data });
+
+  const ctx = document.getElementById("myChart");
+
+  new Chart(ctx, {
+    type: "line",
+    data: {
+      labels: data.map((e) => e.weekDayShort),
+      datasets: [
+        {
+          label: "# of Votes",
+          data: data.map((e) => {
+            console.log(e.temp);
+            e.temp;
+          }),
+          borderWidth: 1,
+        },
+      ],
+    },
+    options: {
+      maintainAspectRatio: false,
+      plugins: {
+        legend: false, // Hide legend
+      },
+      scales: {
+        y: {
+          display: true, // Hide Y axis labels
+        },
+        x: {
+          display: true, // Hide X axis labels
+        },
+      },
+    },
+  });
+};

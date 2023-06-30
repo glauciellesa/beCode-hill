@@ -34,6 +34,9 @@ body {
 }
 
 .container {
+  display: flex;
+  justify-content: center;
+  align-content: center;
   width: 100%;
   background-color: #fff;
   border-radius: 0.8rem;
@@ -111,15 +114,22 @@ body {
   padding-bottom: 3rem;
 }
 
+.chart {
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+}
+
 .weather-inf {
   padding: 1rem;
   display: grid;
+  grid-template-columns: repeat(2, 1fr);
   justify-content: space-around;
 }
 
 .container-weather {
   padding: 1rem;
-  width: 11rem;
+  width: 9rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -169,8 +179,8 @@ body {
   }
 
   .current-info-temp img {
-    top: 22.2rem;
-    left: 41rem;
+    top: 16.2rem;
+    left: 20rem;
   }
 
   .layer {
@@ -189,6 +199,5 @@ body {
 
   .weather-inf {
     grid-template-columns: repeat(5, 1fr);
-    justify-content: space-around;
   }
 }
