@@ -76,6 +76,11 @@ body {
   width: 4rem;
 }
 
+.current-data {
+  padding-top: 0.4rem;
+  color: #ffffff9d;
+}
+
 .city-img {
   background-color: #ffffff93;
   width: 100%;

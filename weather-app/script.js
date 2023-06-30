@@ -89,6 +89,18 @@ const reduceDataWeather = (data) => {
   displayWeatherCard(newData);
 };
 
+const diplayTodayDate = () => {
+  let month = new Date().toLocaleDateString("en", {
+    month: "long",
+  });
+  let day = new Date().getDate();
+  let hour = new Date().getHours();
+  let minutes = new Date().getMinutes();
+  console.log({ month }, { day });
+  let divCurrentData = document.querySelector(".current-data");
+  divCurrentData.textContent = `${month} ${day} ${hour}:${minutes}`;
+};
+
 const displayCurrentWeather = (data) => {
   const currentCity = createElement("div", { class: "currente-city" }, [
     createTextNode(`${data.city.name} - ${data.city.country}`),
@@ -124,6 +136,7 @@ const displayCurrentWeather = (data) => {
   document.querySelector(".current-weather-info").append(currentTemperature);
   document.querySelector(".current-weather-info").append(currentTempMoreInfo);
   document.querySelector(".current-city").append(currentCity);
+  diplayTodayDate();
 };
 
 const getWeatherData = (location) => {
@@ -198,7 +211,6 @@ document.querySelector("button").addEventListener("click", () => {
 
 cityInput.addEventListener("keyup", function (e) {
   if (e.code === "Enter") {
-    console.log(e.target.value);
     searchInfo.style.display = "none";
     container.style.display = "inline-block";
     getWeatherData(e.target.value);
