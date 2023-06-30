@@ -5,6 +5,8 @@
 }
 
 body {
+  width: 100dvw;
+  height: 100dvh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -172,8 +174,13 @@ body {
   }
 
   .current-info-temp img {
-    top: 15.8rem;
+    top: 22.2rem;
     left: 41rem;
+  }
+
+  .layer {
+    align-items: flex-end;
+    flex-direction: row;
   }
 
   .current-weather-info {
