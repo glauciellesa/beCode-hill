@@ -72,10 +72,14 @@ body {
   padding-bottom: 1rem;
 }
 
+.current-info-temp {
+  position: relative;
+}
+
 .current-info-temp img {
   position: absolute;
-  top: 16rem;
-  left: 16rem;
+  top: -2rem;
+  left: 10rem;
   width: 4rem;
 }
 
@@ -159,8 +163,7 @@ body {
   }
 
   .current-info-temp img {
-    top: 20rem;
-    left: 17rem;
+    left: 12rem;
   }
 
   .weather-inf {
@@ -179,8 +182,7 @@ body {
   }
 
   .current-info-temp img {
-    top: 16.2rem;
-    left: 20rem;
+    left: 12rem;
   }
 
   .layer {

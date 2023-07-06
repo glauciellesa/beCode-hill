@@ -40,6 +40,7 @@ window.addEventListener("DOMContentLoaded", () => {
     console.log(element);
     displayData(element.name, element.age, element.countryId);
   });
+
   btn.addEventListener("click", () => {
     const name = document.getElementById("name").value;
     const country = getSelectedCountry();
