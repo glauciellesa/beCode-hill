@@ -241,8 +241,7 @@ const createChart = (data) => {
         {
           label: "# of Votes",
           data: data.map((e) => {
-            console.log(e.temp);
-            e.temp;
+            return e.temp;
           }),
           borderWidth: 1,
         },
